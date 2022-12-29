@@ -49,3 +49,23 @@ npm run lint
   git clone https://github.com/BlakvGhost/futura-vision-api.git
 ```
 ### Set now the API url in your project by editing $api_url variable in the ***src/global/global.js***
+
+## Tech Stack
+
+**Client:** HTML5, CSS3, Vue.js
+
+**API:** Laravel
+
+
+## Authors
+- [@BlakvGhost](https://github.com/BlakvGhost)
+
+## License
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+
+## Support
+
+For support, email me on kabirou2001@gmail.com or join our Slack channel.
