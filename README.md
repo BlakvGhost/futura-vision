@@ -1,17 +1,26 @@
-# latest-vue
+# Futura-Vision
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+Site de vitrine developpé en vue.js fonctionnant avec un API Laravel
 
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## Installation
 
+Install futura-vision with GitHub
+
+### Make sure you already have NodeJS installed on your machine
+
+```bash
+  git clone https://github.com/BlakvGhost/futura-vision.git
+```
+Browse into the folder
+
+```bash
+cd futura-vision
+```
+Install all the dependencies
 ```sh
 npm install
 ```
@@ -33,3 +42,10 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Download and install the API
+
+```bash
+  git clone https://github.com/BlakvGhost/futura-vision-api.git
+```
+### Set now the API url in your project by editing $api_url variable in the ***src/global/global.js***
