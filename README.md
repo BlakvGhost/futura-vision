@@ -1,6 +1,6 @@
 # Futura-Vision
 
-Site de vitrine developpé en vue.js fonctionnant avec un API Laravel
+Showcase site developed in vue.js working with a Laravel API
 
 ## Customize configuration
 
