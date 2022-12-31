@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default function session(self) {
     self.$defaultTitle = "FuturaVision";
-    self.$api_url = "http://futura-vision-api.42web.io/api/";
-    self.$storage_url = "http://futura-vision-api.42web.io/storage/";
+    self.$api_url = "https://futura-vision-api.42web.io/api/";
+    self.$storage_url = "https://futura-vision-api.42web.io/storage/";
     self.$authSessionName = "_DoNotTryOpening__FV++U76";
 
     self.$token = function() {

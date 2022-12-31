@@ -13,7 +13,7 @@ Install futura-vision with GitHub
 ### Make sure you already have NodeJS installed on your machine
 
 ```bash
-  git clone https://github.com/BlakvGhost/futura-vision.git
+git clone https://github.com/BlakvGhost/futura-vision.git
 ```
 Browse into the folder
 
@@ -48,7 +48,7 @@ npm run lint
 ```bash
   git clone https://github.com/BlakvGhost/futura-vision-api.git
 ```
-### Set now the API url in your project by editing $api_url variable in the ***src/global/global.js***
+### Set now the API url in your project by editing $api_url variable in the ***src/global/session.js***
 
 ## Tech Stack
 
