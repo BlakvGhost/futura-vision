@@ -12,7 +12,7 @@ defineProps({
                     <h3 class="text-fv-primary"><span class="dbslash">//</span> &nbsp; NOS SERVICES</h3>
                 </div>
                 <div class="row row-cols-3 my-3 fv-f-direc-col-sm">
-                    <div class="col fvSlideOn fv-w-100-sm" v-for="sv in data.services" :key="sv.id">
+                    <div class="col fvSlideOn fv-w-100-sm my-2" v-for="sv in data.services" :key="sv.id">
                         <div class="container-fluid p-3 border rounded-3 fv-hov bg-light">
                             <router-link :to="{ name: 'service', params: { id: sv.id ?? 0, title: $url(sv.name) } }"
                                 class="text-decoration-none">

@@ -366,7 +366,7 @@
                             </div>
                             <div class="position-absolute start-0 w-100" :class="'fvSlideOn'" style="bottom: -15%;">
                                 <div class="shadow position-relative h-100 w-75 m-auto header-color
-                                 overflow-hidden fv-hov-light" style="border-top-left-radius: 30%;
+                                 overflow-hidden fv-hov-light" style="border-top-left-radius: 30%,
                                  border-bottom-right-radius: 30%">
                                     <div class="p-3">
                                         <div class="fv-title-big">
@@ -498,7 +498,7 @@
                         <div class="col p-3 text-center">
                             <div class="text-dark my-2">
                                 <blockquote style="font-size:22px;">
-                                    {{ tm.bio }}
+                                    {{ $sanitaze(tm.bio)}}
                                 </blockquote>
                             </div>
                             <div class="text-center text-dark">

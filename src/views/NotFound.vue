@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-    data: Object,
+    data:Object,
     user: Object | Boolean,
 })
 </script>
