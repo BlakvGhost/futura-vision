@@ -8,7 +8,7 @@ export default function session(self) {
 
     self.$token = function () {
         let auth = JSON.parse(sessionStorage.getItem(this.$authSessionName)) ??
-            { token: `1|FUiFyHIRbjVwPOkVRINSo8RXGZmnbDZf0QdvuoU3` };
+            { token: `324|Lyq0da5SzVjV6seNzGbS5HVu5YxlJNPtA5iDXrZi` };
         return {
             headers: {
                 Authorization: "Bearer " + auth["token"],
@@ -24,8 +24,8 @@ export default function session(self) {
 
         if (!auth['token']) {
             this.$http.post('login', {
-                email: 'test.azert@gmail.com',
-                password: 'D2NEQCX9RsCnpm3'
+                email: 'fv2022@gmail.com',
+                password: 'password'
             }).then(data => {
                 sessionStorage.setItem(this.$authSessionName, JSON.stringify(data.data.data));
             });
