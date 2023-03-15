@@ -24,8 +24,8 @@ export default function session(self) {
 
         if (!auth['token']) {
             this.$http.post('login', {
-                email: 'fv2022@gmail.com',
-                password: 'password'
+                email: 'test.azert@gmail.com',
+                password: 'D2NEQCX9RsCnpm3'
             }).then(data => {
                 sessionStorage.setItem(this.$authSessionName, JSON.stringify(data.data.data));
             });
