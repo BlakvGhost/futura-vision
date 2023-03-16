@@ -4,7 +4,7 @@ export default function session(self) {
     self.$defaultTitle = "FuturaVision";
     self.$base_url = "https://v2.b-dating.com/";
     self.$api_url = `${self.$base_url}api`;
-    self.$storage_url = `${self.$api_url}storage/`;
+    self.$storage_url = `${self.$base_url}storage/`;
     self.$authSessionName = "_DoNotTryOpening__FV++U76";
 
     self.$token = function () {
