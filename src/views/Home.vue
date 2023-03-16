@@ -334,7 +334,7 @@
     </div>
 </div>
 <div id="g" class="fv-py-5-lg bg-third">
-    <div class="container-custom my-5 position-relative py-4 fv-text-center-sm">
+    <div class="container-custom my-5 position-relative py-3 fv-text-center-sm">
         <div class="row row-cols-2 mt-4" :class="'fvSlideOn'">
             <div class="col fv-w-100-sm">
                 <div class="fv-title-normal" :class="'fvSlideOn'">
@@ -364,11 +364,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-absolute start-0 w-100" style="bottom: -15%;">
+                            <div class="position-absolute start-0 w-100" :class="'fvSlideOn'" style="bottom: -15%;">
                                 <div class="shadow position-relative h-100 w-75 m-auto header-color
                                  overflow-hidden fv-hov-light" style="border-top-left-radius: 30%,
                                  border-bottom-right-radius: 30%">
-                                    <div class="p-3 ">
+                                    <div class="p-3">
                                         <div class="fv-title-big">
                                             <h6 class="text-white fw-bolder oswald-bold"> {{ pj.name }} </h6>
                                         </div>
