@@ -364,7 +364,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="position-absolute start-0 w-100" :class="'fvSlideOn'" style="bottom: -15%;">
+                            <div class="position-absolute start-0 w-100" style="bottom: -15%;">
                                 <div class="shadow position-relative h-100 w-75 m-auto header-color
                                  overflow-hidden fv-hov-light" style="border-top-left-radius: 30%,
                                  border-bottom-right-radius: 30%">
