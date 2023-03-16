@@ -262,8 +262,8 @@
         </div>
     </div>
 </div>
-<div id="f" class="pt-8 mb-5 fv-my-8-sm">
-    <div class="container-custom my-5 pb-3 position-relative">
+<div id="f" class="pt-5 mb-5 fv-my-6-sm">
+    <div class="container-custom my-5 pt-5 pb-3 position-relative">
         <div class="row row-cols-2">
             <div class="col">
                 <div class="fv-title-normal" :class="'fvSlideOn'">
