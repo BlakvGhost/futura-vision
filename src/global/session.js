@@ -20,7 +20,7 @@ export default function session(self) {
     });
 
     self.$currentUser = function () {
-        let auth = JSON.parse(sessionStorage.getItem(this.$authSessionName)) ?? false;
+        let auth = JSON.parse(sessionStorage.getItem(this.$authSessionName)) ?? {};
 
         if (!auth['token']) {
             this.$http.post('login', {
