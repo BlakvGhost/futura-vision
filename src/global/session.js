@@ -2,8 +2,9 @@ import axios from "axios";
 
 export default function session(self) {
     self.$defaultTitle = "FuturaVision";
-    self.$api_url = "https://v2.b-dating.com";
-    self.$storage_url = `${self.$api_url}/storage/`;
+    self.$base_url = "https://v2.b-dating.com/";
+    self.$api_url = `${self.$base_url}api`;
+    self.$storage_url = `${self.$api_url}storage/`;
     self.$authSessionName = "_DoNotTryOpening__FV++U76";
 
     self.$token = function () {
