@@ -353,7 +353,7 @@
     </div>
     <div class="container">
         <div class="" style="overflow-x: hidden">
-            <div class="swiper swiper-partner">
+            <div class="swiper swiper-partner" style="height: 300px;">
                 <div class="swiper-wrapper" style="height: 200px;">
                         <div class="swiper-slide fv-w-25-lg fv-w-100-sm h-100 fv-mx-3-lg
                          position-relative" v-for="pj in $reverse(data.projects)" :key="pj.id" >
