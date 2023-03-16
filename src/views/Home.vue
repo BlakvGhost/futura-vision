@@ -302,7 +302,7 @@
                 </div>
             </div>
         </div>
-        <div class="fv-position-absolute-lg start-0 w-100 fv-h-100-sm" style="bottom: -35%;height: 150px;">
+        <div class="fv-position-absolute-lg start-0 w-100 fv-h-100-sm" style="bottom: -29%;height: 150px;">
             <div class="shadow p-3 position-relative full">
                 <div class="position-absolute start-0 top-0 full rank" :style="`background-image: url('${$loadImage(data.config?data.config.image_contact_bg:null)}');`" >
                     <div class="full opacity-75 bg-dark">
@@ -334,7 +334,7 @@
     </div>
 </div>
 <div id="g" class="fv-py-5-lg bg-third">
-    <div class="container-custom my-5 position-relative py-3 fv-text-center-sm">
+    <div class="container-custom my-5 position-relative py-4 fv-text-center-sm">
         <div class="row row-cols-2 mt-4" :class="'fvSlideOn'">
             <div class="col fv-w-100-sm">
                 <div class="fv-title-normal" :class="'fvSlideOn'">
