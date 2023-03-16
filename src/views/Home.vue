@@ -368,7 +368,7 @@
                                 <div class="shadow position-relative h-100 w-75 m-auto header-color
                                  overflow-hidden fv-hov-light" style="border-top-left-radius: 30%,
                                  border-bottom-right-radius: 30%">
-                                    <div class="p-3">
+                                    <div class="p-3 ">
                                         <div class="fv-title-big">
                                             <h6 class="text-white fw-bolder oswald-bold"> {{ pj.name }} </h6>
                                         </div>
