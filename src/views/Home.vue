@@ -402,7 +402,7 @@
     <div class="container-custom py-4 position-relative">
         <div class="text-center fv-w-50-lg m-auto">
             <div class="fv-title-normal" :class="'fvSlideOn'">
-                <h4 class="text-uppercase"><span class="dbslash">//</span> &nbsp;technology index </h4>
+                <h4 class="text-uppercase"><span class="dbslash">//</span> &nbsp;nos technologies</h4>
             </div>
             <div class="fv-title-big mb-3" :class="'fvSlideOn'">
                 <h4 class="fw-bolder oswald-bold" data-fv-anim='autowrite'
