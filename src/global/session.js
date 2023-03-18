@@ -85,12 +85,12 @@ export default function session(self) {
         }
     };
 
-    const loadImage = (link = 'default.png') => {
-        return STORAGE_URL + link;
+    const loadImage = (link) => {
+        return STORAGE_URL + (link || 'default.png');
     };
 
-    const loadImageFV = (link = 'logo.jpg') => {
-        return STORAGE_URL + link;
+    const loadImageFV = (link) => {
+        return STORAGE_URL + (link || 'logo.jpg');
     };
 
     self.$defaultTitle = DEFAULT_TITLE;
