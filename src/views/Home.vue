@@ -51,7 +51,7 @@
                                     <h4>{{ $reduce(slid.content, 150) }}</h4>
                                 </div>
                                 <div style="width: 150px;" class="mt-4" :class="'fvSlideOn'">
-                                    <router-link :to="{name: 'post', params: {id: slid.id ?? 0, title: $url(slid.sub_title)}}"
+                                    <router-link :to="{name: 'post', params: {id: slid.id ?? 0, title: $url(slid.sup_title)}}"
                                         class="btn btn-custom w-100 text-white fw-bolder">
                                         LIRE PLUS
                                      </router-link>
