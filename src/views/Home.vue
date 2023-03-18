@@ -21,7 +21,7 @@
                         <div class="fv-carousel-numerous col d-flex flex-nowrap align-self-center">
                             <span> {{ currentSlide }} </span>
                             <span>/</span>
-                            <span>{{ data.carousel.length }}</span>
+                            <span>{{ data?.carousel?.length || 0 }}</span>
                         </div>
                         <div class="fv-carousel-control-next col align-self-center">
                             <a role="button" class="btn">
