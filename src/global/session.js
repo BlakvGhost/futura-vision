@@ -103,7 +103,7 @@ export default function session(self) {
     self.$currentUser = getCurrentUser;
     self.$logout = logout;
     self.$url = urlify;
-    self.$sanitize = sanitize;
+    self.$sanitaze = sanitize;
     self.$reduce = reduceText;
     self.$reverse = reverseData;
     self.$avoid = avoidUndefined;
