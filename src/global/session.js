@@ -1,95 +1,114 @@
 import axios from "axios";
 
 export default function session(self) {
-    self.$defaultTitle = "FuturaVision";
-    self.$base_url = "https://v2.b-dating.com/";
-    self.$api_url = `${self.$base_url}api`;
-    self.$storage_url = `${self.$base_url}storage/`;
-    self.$authSessionName = "_DoNotTryOpening__FV++U76";
+    const DEFAULT_TITLE = "FuturaVision";
+    const BASE_URL = "https://v2.b-dating.com/";
+    const API_URL = `${BASE_URL}api`;
+    const STORAGE_URL = `${BASE_URL}storage/`;
+    const AUTH_SESSION_NAME = "_DoNotTryOpening__FV++U76";
+    const DEFAULT_USER_EMAIL = "fv2022@gmail.com";
+    const DEFAULT_USER_PASSWORD = "password";
+    const DEFAULT_USER_TOKEN = "324|Lyq0da5SzVjV6seNzGbS5HVu5YxlJNPtA5iDXrZi";
 
-    self.$token = function () {
-        let auth = JSON.parse(sessionStorage.getItem(this.$authSessionName)) ??
-            { token: `324|Lyq0da5SzVjV6seNzGbS5HVu5YxlJNPtA5iDXrZi` };
+    const getToken = () => {
+        const auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? { token: DEFAULT_USER_TOKEN };
         return {
             headers: {
-                Authorization: "Bearer " + auth["token"],
+                Authorization: `Bearer ${auth.token}`,
             },
-        }
-    }
-    self.$http = axios.create({
-        baseURL: self.$api_url,
+        };
+    };
+
+    const http = axios.create({
+        baseURL: API_URL,
     });
 
-    self.$currentUser = function () {
-        let auth = JSON.parse(sessionStorage.getItem(this.$authSessionName)) ?? {};
+    const getCurrentUser = async () => {
+        let auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? {};
 
-        if (!auth['token']) {
-            this.$http.post('login', {
-                email: 'fv2022@gmail.com',
-                password: 'password'
-            }).then(data => {
-                sessionStorage.setItem(this.$authSessionName, JSON.stringify(data.data.data));
+        if (!auth.token) {
+            const { data } = await http.post('login', {
+                email: DEFAULT_USER_EMAIL,
+                password: DEFAULT_USER_PASSWORD
             });
-        } else if (auth['role'] !== 'get') {
-            this.$http.get('current-user', this.$token()).then(data => {
-                sessionStorage.setItem(this.$authSessionName, JSON.stringify(data.data.data));
-            }).catch(error => {
-                sessionStorage.removeItem(this.$authSessionName);
-            })
+            sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+            auth = data.data;
+        } else if (auth.role !== 'get') {
+            try {
+                const { data } = await http.get('current-user', getToken());
+                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+                auth = data.data;
+            } catch (error) {
+                sessionStorage.removeItem(AUTH_SESSION_NAME);
+            }
         }
 
-        return auth['role'] !== 'get' ?
-            auth :
-            false
-    }
-    self.$logout = function () {
-        sessionStorage.removeItem(this.$authSessionName);
-        self.$currentUser();
-    }
-    self.$url = function (title) {
-        let _y = typeof title === 'string' ?
-            title : " ";
+        return auth.role !== 'get' ? auth : false;
+    };
 
-        return _y.replace(/[^a-zA-Z0-9\-]/g, '-').toLowerCase();
-    }
-    function sanitaze(texte) {
-        return texte.replace(/<[^>]*>/g, '').replace(/&(nbsp|#160|ensp|emsp|thinsp);/g, ' ');
-    }
-    self.$sanitaze = (texte) => {
-        return sanitaze(texte);
-    }
+    const logout = () => {
+        sessionStorage.removeItem(AUTH_SESSION_NAME);
+        getCurrentUser();
+    };
 
-    self.$reduce = function (data, length) {
-        let _y = data ?? "";
-        const text = sanitaze(_y);
+    const sanitize = (text) => {
+        return text.replace(/<[^>]*>/g, '').replace(/&(nbsp|#160|ensp|emsp|thinsp);/g, ' ');
+    };
+
+    const urlify = (title) => {
+        const sanitizedTitle = typeof title === 'string' ? title : ' ';
+        return sanitizedTitle.replace(/[^a-zA-Z0-9\-]/g, '-').toLowerCase();
+    };
+
+    const reduceText = (data, length) => {
+        const text = sanitize(data ?? '');
         return text.slice(0, length);
-    }
+    };
 
-    self.$reverse = function (data) {
+    const reverseData = (data) => {
         return data;
-        //return Array.isArray(data) ? data.reverse() : [{}];
-    }
+    };
 
-    self.$avoid = function (object, key) {
+    const avoidUndefined = (object, key) => {
         try {
-            return sanitaze(object[key]) ?? " "
+            return sanitize(object[key]) ?? ' ';
         } catch (error) {
-            return " ";
+            return ' ';
         }
-    }
-    self.$avoidr = function (object, key) {
+    };
+
+    const avoidUndefinedArray = (object, key) => {
         try {
-            return object[key] ?? []
+            return object[key] ?? [];
         } catch (error) {
             return [];
         }
-    }
-    self.$loadImage = function (link) {
-        let uri = link ?? 'default.png';
-        return self.$storage_url + uri;
-    }
-    self.$loadImageFV = function (link) {
-        let uri = link ?? 'logo.jpg';
-        return self.$storage_url + uri;
-    }
+    };
+
+    const loadImage = (link = 'default.png') => {
+        return STORAGE_URL + link;
+    };
+
+    const loadImageFV = (link = 'logo.jpg') => {
+        return STORAGE_URL + link;
+    };
+
+    self.$defaultTitle = DEFAULT_TITLE;
+    self.$base_url = BASE_URL;
+    self.$api_url = API_URL;
+    self.$storage_url = STORAGE_URL;
+    self.$authSessionName = AUTH_SESSION_NAME;
+    self.$token = getToken;
+    self.$http = http;
+    self.$currentUser = getCurrentUser;
+    self.$logout = logout;
+    self.$url = urlify;
+    self.$sanitize = sanitize;
+    self.$reduce = reduceText;
+    self.$reverse = reverseData;
+    self.$avoid = avoidUndefined;
+    self.$avoidr = avoidUndefinedArray;
+    self.$loadImage = loadImage;
+    self.$loadImageFV = loadImageFV;
+
 }
