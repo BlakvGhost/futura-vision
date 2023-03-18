@@ -55,9 +55,22 @@ export default function session(self) {
         return text.replace(/<[^>]*>/g, '').replace(/&(nbsp|#160|ensp|emsp|thinsp);/g, ' ');
     };
 
+    /**
+ * Convertit une chaîne de caractères en un format valide pour une URL.
+ * 
+ * @param {string} title - La chaîne de caractères à convertir.
+ * @returns {string} La chaîne de caractères convertie.
+ */
     const urlify = (title) => {
-        const sanitizedTitle = typeof title === 'string' ? title : ' ';
-        return sanitizedTitle.replace(/[^a-zA-Z0-9\-]/g, '-').toLowerCase();
+        const sanitizedTitle = typeof title === 'string' ? title : '';
+        const urlifiedTitle = sanitizedTitle
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s]+/g, '-')
+            .toLowerCase();
+
+        return urlifiedTitle;
     };
 
     const reduceText = (data, length) => {
