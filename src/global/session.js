@@ -26,13 +26,13 @@ export default function session(self) {
     const getCurrentUser = async () => {
         let auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? {};
 
-        if (!auth.token) {
+        if (!auth['token']) {
             const { data } = await http.post('login', {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
             });
             sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
-        } else if (auth.role !== 'get') {
+        } else if (auth['role'] !== 'get') {
             try {
                 const { data } = await http.get('current-user', getToken());
                 sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
@@ -40,8 +40,7 @@ export default function session(self) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
             }
         }
-        console.log(auth);
-        return auth.role !== 'get' ? auth : false;
+        return auth['role'] !== 'get' ? auth : false;
     };
 
     const logout = () => {
