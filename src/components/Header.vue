@@ -105,6 +105,7 @@ defineProps({
                 </div>
                 <div class="navbar-nav">
                     <div class="navbar-brand fv-m-0-sm">
+                        {{ online }}
                         <router-link :to="{ name: 'login' }" class="nav-link position-relative" v-if="!online['role']">
                             <i class="mdi mdi-account-outline mdi-24px" title="CONNECT YOU"></i>
                         </router-link>

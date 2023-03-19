@@ -123,5 +123,4 @@ export default function session(self) {
     self.$avoidr = avoidUndefinedArray;
     self.$loadImage = loadImage;
     self.$loadImageFV = loadImageFV;
-
 }
