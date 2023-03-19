@@ -31,17 +31,18 @@ export default function session(self) {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
             });
-            sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data?.data));
-            auth = data?.data;
+            sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+            auth = data.data;
         } else if (auth.role !== 'get') {
             try {
                 const { data } = http.get('current-user', getToken());
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data?.data));
-                auth = data?.data;
+                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+                auth = data.data;
             } catch (error) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
             }
         }
+        console.log(auth);
         return auth.role !== 'get' ? auth : false;
     };
 
