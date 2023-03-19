@@ -34,10 +34,13 @@ export default function session(self) {
             sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
             auth = data.data;
         } else if (auth.role !== 'get') {
+
             try {
                 const { data } = await http.get('current-user', getToken());
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
-                auth = data.data;
+                data.then(res => {
+                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data));
+                    auth = res.data;
+                })
             } catch (error) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
             }
