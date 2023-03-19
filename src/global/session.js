@@ -34,15 +34,12 @@ export default function session(self) {
             sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
             auth = data.data;
         } else if (auth.role !== 'get') {
-
-            await http.get('current-user', getToken())
-                .then(res => {
-                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data));
-                    auth = res.data;
-                })
-                .catch(error => {
+            try {
+                const { data } = await http.get('current-user', getToken());
+                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+            } catch (error) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
-            })
+            }
         }
 
         return auth.role !== 'get' ? auth : false;
