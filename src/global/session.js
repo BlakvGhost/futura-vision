@@ -32,7 +32,6 @@ export default function session(self) {
                 password: DEFAULT_USER_PASSWORD
             });
             sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
-            auth = data.data;
         } else if (auth.role !== 'get') {
             try {
                 const { data } = await http.get('current-user', getToken());
