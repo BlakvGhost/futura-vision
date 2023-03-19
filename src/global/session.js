@@ -41,7 +41,7 @@ export default function session(self) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
             }
         }
-
+        console.log(auth);
         return auth.role !== 'get' ? auth : false;
     };
 
