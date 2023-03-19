@@ -23,23 +23,26 @@ export default function session(self) {
         baseURL: API_URL,
     });
 
-    const getCurrentUser = async () => {
+    const getCurrentUser = () => {
         let auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? {};
+
         if (!auth.token) {
-            http.post('login', {
+            const { data } = http.post('login', {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
-            }).then(data => {
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data.data));
             });
-        } else if (auth?.role !== 'get') {
-            http.get('current-user', getToken()).then(data => {
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data.data));
-            }).catch(error => {
+            sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+            auth = data.data;
+        } else if (auth.role !== 'get') {
+            try {
+                const { data } = http.get('current-user', getToken());
+                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
+                auth = data.data;
+            } catch (error) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
-            })
+            }
         }
-        return auth.role !== 'get' ? auth : false
+        return auth.role !== 'get' ? auth : false;
     };
 
     const logout = () => {
@@ -52,11 +55,11 @@ export default function session(self) {
     };
 
     /**
-    * Convertit une chaîne de caractères en un format valide pour une URL.
-    * 
-    * @param {string} title - La chaîne de caractères à convertir.
-    * @returns {string} La chaîne de caractères convertie.
-    */
+ * Convertit une chaîne de caractères en un format valide pour une URL.
+ * 
+ * @param {string} title - La chaîne de caractères à convertir.
+ * @returns {string} La chaîne de caractères convertie.
+ */
     const urlify = (title) => {
         const sanitizedTitle = typeof title === 'string' ? title : '';
         const urlifiedTitle = sanitizedTitle
