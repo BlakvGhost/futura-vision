@@ -31,14 +31,14 @@ export default function session(self) {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
             }).then(res => {
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data));
-                auth = res.data;
+                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res?.data.data));
+                auth = res?.data.data;
             });
         } else if (auth.role !== 'get') {
             http.get('current-user', getToken())
                 .then(res => {
-                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data));
-                    auth = res.data;
+                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data,data));
+                    auth = res.data.data;
                 })
                 .catch(error => {
                     sessionStorage.removeItem(AUTH_SESSION_NAME);
