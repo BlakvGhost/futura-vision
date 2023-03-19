@@ -5,7 +5,6 @@ import Footer from "@/components/Footer.vue";
 import Offcanvas from "@/components/Offcanvas.vue";
 </script>
 <template>
-
   <section id="modal" style="z-index: 5000">
     <div id="WindowPreloader" class="position-fixed top-0 start-0 w-100 modal-backdrop h-100 bg-black">
       <div class="container-fluid position-absolute start-0 top-50">
@@ -65,8 +64,7 @@ export default {
   data() {
     return {
       online: false,
-      data: {
-      },
+      data: {},
       filldata: {
         services: {},
         config: {},
@@ -115,6 +113,7 @@ export default {
     });
     this.$router.afterEach(() => {
       this.$Progress.finish();
+      window.scrollTo(0, 0);
     });
   },
 };
