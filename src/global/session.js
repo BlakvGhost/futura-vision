@@ -31,6 +31,7 @@ export default function session(self) {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
             });
+            console.log(data);
             sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
             auth = data.data;
         } else if (auth.role !== 'get') {
@@ -42,7 +43,6 @@ export default function session(self) {
                 sessionStorage.removeItem(AUTH_SESSION_NAME);
             }
         }
-        console.log(auth);
         return auth.role !== 'get' ? auth : false;
     };
 
