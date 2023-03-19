@@ -10,8 +10,20 @@ export default function session(self) {
     const DEFAULT_USER_PASSWORD = "password";
     const DEFAULT_USER_TOKEN = "324|Lyq0da5SzVjV6seNzGbS5HVu5YxlJNPtA5iDXrZi";
 
+    const setUserSession = user => {
+        return localStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(user));
+    }
+    
+    const getUserSession = () => {
+        return localStorage.getItem(AUTH_SESSION_NAME);
+    }
+
+    const removeUserSession = () => {
+        return localStorage.removeItem(AUTH_SESSION_NAME);
+    }
+
     const getToken = () => {
-        const auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? { token: DEFAULT_USER_TOKEN };
+        const auth = JSON.parse(getUserSession()) ?? { token: DEFAULT_USER_TOKEN };
         return {
             headers: {
                 Authorization: `Bearer ${auth.token}`,
@@ -24,7 +36,7 @@ export default function session(self) {
     });
 
     const getCurrentUser = () => {
-        let auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? {};
+        let auth = JSON.parse(getUserSession()) ?? {};
 
         if (!auth.token) {
             http.post('login', {
@@ -32,22 +44,22 @@ export default function session(self) {
                 password: DEFAULT_USER_PASSWORD
             })
                 .then(res => {
-                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data.data));
+                    setUserSession(res.data.data);
                     auth = res.data.data;
                 })
         } else if (auth.role !== 'get') {
             http.get('current-user', getToken())
                 .then(res => {
-                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data.data));
+                    setUserSession(res.data.data);
                     auth = res.data.data;
                 })
-                .catch(error => sessionStorage.removeItem(AUTH_SESSION_NAME))
+                .catch(error => removeUserSession())
         }
         return auth.role !== 'get' ? auth : false;
     };
 
     const logout = () => {
-        sessionStorage.removeItem(AUTH_SESSION_NAME);
+        removeUserSession();
         getCurrentUser();
     };
 
@@ -114,6 +126,8 @@ export default function session(self) {
     self.$token = getToken;
     self.$http = http;
     self.$currentUser = getCurrentUser;
+    self.$setUserSession = setUserSession;
+    self.$removeUserSession = removeUserSession;
     self.$logout = logout;
     self.$url = urlify;
     self.$sanitaze = sanitize;

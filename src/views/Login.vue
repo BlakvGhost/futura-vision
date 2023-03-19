@@ -42,15 +42,15 @@ export default {
     },
     methods: {        
         form: function() {
-            let data = {
+            const data = {
                 email: this.email,
                 password: this.password,
-            }  
+            }
             if (data.password && data.email){
                 this.$Progress.start();
                 this.$http.post('login', data, this.$token()).then( e => {
                     if (e.status === 200) {
-                        sessionStorage.setItem(this.$authSessionName, JSON.stringify(e.data.data));
+                        this.$setUserSession(e.data.data);
                         this.$toastr("CONNEXION", e.data.message, "success");
                         this.$Progress.finish();
                         this.$currentUser();

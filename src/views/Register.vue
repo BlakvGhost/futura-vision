@@ -20,8 +20,8 @@
                         <div class="msg-alert text-center">
                             <h3> {{ success }}</h3>
                             <h4>Continuer la Navigation Sur: </h4>
-                            <router-link style="font-size:22px" to="/blog" class="btn btn-link">Blog</router-link>
-                            <router-link style="font-size:22px" to="/forum" class="btn btn-link">Forum</router-link>
+                            <router-link style="font-size:22px" to="/notre-blog" class="btn btn-link">Blog</router-link>
+                            <router-link style="font-size:22px" to="/notre-forum" class="btn btn-link">Forum</router-link>
                         </div>
                     </div>
                     <div v-if="!success">
@@ -84,7 +84,7 @@ export default {
             this.$Progress.start();
             this.$http.post('register', data, this.$token()).then(response => {
                 if (response.status === 200) {
-                    sessionStorage.setItem(this.$authSessionName, JSON.stringify(response.data.data));
+                    this.$setUserSession(response.data.data);
                     this.success = response.data.message;
                     this.$toastr("INSCRIPTION", this.success, "success");
                     return this.$Progress.finish();

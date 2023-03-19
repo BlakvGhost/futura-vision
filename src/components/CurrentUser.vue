@@ -87,7 +87,7 @@ export default {
                     this.$http.post('user/' + this.user.id, data, this.$token()).then(res => {
                         this.state = res.data.success;
                         if (res.status === 200) {
-                            sessionStorage.setItem(this.$authSessionName, JSON.stringify(res.data.data));
+                            this.$setUserSession(res.data.data)
                             this.notifs = res.data.message;
                             this.$toastr("UTILISATEUR", this.notifs, "success");
                             return this.$Progress.finish();
