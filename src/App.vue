@@ -25,7 +25,6 @@ import Offcanvas from "@/components/Offcanvas.vue";
     </Offcanvas>
   </section>
   <header>
-    {{ online }} {{ $currentUser() }}
     <Header :online="online" :filldata="filldata">
 
     </Header>
@@ -110,7 +109,6 @@ export default {
 
       this.$Progress.start();
 
-      console.log(this.$currentUser());
       this.online = this.$currentUser();
 
       next();
