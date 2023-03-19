@@ -27,21 +27,21 @@ export default function session(self) {
         let auth = JSON.parse(sessionStorage.getItem(AUTH_SESSION_NAME)) ?? {};
 
         if (!auth.token) {
-            const { data } = http.post('login', {
+            http.post('login', {
                 email: DEFAULT_USER_EMAIL,
                 password: DEFAULT_USER_PASSWORD
-            });
-            console.log(data);
-            sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
-            auth = data.data;
+            })
+                .then(res => {
+                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data.data));
+                    auth = res.data.data;
+                })
         } else if (auth.role !== 'get') {
-            try {
-                const { data } = http.get('current-user', getToken());
-                sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(data.data));
-                auth = data.data;
-            } catch (error) {
-                sessionStorage.removeItem(AUTH_SESSION_NAME);
-            }
+            http.get('current-user', getToken())
+                .then(res => {
+                    sessionStorage.setItem(AUTH_SESSION_NAME, JSON.stringify(res.data.data));
+                    auth = res.data.data;
+                })
+                .catch(error => sessionStorage.removeItem(AUTH_SESSION_NAME))
         }
         return auth.role !== 'get' ? auth : false;
     };
