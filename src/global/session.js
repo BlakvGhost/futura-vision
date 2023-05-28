@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function session(self) {
     const DEFAULT_TITLE = "FuturaVision";
-    const BASE_URL = "https://v2.b-dating.com/";
+    const BASE_URL = "https://futura-vision-api.kabirou-alassane.com/";
     const API_URL = `${BASE_URL}api`;
     const STORAGE_URL = `${BASE_URL}storage/`;
     const AUTH_SESSION_NAME = "_DoNotTryOpening__FV++U76";
